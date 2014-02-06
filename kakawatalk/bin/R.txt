@@ -77,7 +77,7 @@ int drawable search 0x7f02002c
 int drawable textbackground 0x7f02002d
 int drawable timebackground 0x7f02002e
 int drawable x 0x7f02002f
-int id action_settings 0x7f050024
+int id action_settings 0x7f050023
 int id call 0x7f05000b
 int id camera 0x7f050016
 int id chat 0x7f05000d
@@ -104,7 +104,6 @@ int id pic 0x7f05001a
 int id prefile 0x7f050021
 int id profile 0x7f05000a
 int id profilename 0x7f05000c
-int id randombt 0x7f050023
 int id room 0x7f05000f
 int id satellite 0x7f050002
 int id scroll_view 0x7f050010

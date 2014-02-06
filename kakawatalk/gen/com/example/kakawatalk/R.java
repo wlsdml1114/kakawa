@@ -240,7 +240,7 @@ containing a value of this type.
         public static final int x=0x7f02002f;
     }
     public static final class id {
-        public static final int action_settings=0x7f050024;
+        public static final int action_settings=0x7f050023;
         public static final int call=0x7f05000b;
         public static final int camera=0x7f050016;
         public static final int chat=0x7f05000d;
@@ -267,7 +267,6 @@ containing a value of this type.
         public static final int prefile=0x7f050021;
         public static final int profile=0x7f05000a;
         public static final int profilename=0x7f05000c;
-        public static final int randombt=0x7f050023;
         public static final int room=0x7f05000f;
         public static final int satellite=0x7f050002;
         public static final int scroll_view=0x7f050010;

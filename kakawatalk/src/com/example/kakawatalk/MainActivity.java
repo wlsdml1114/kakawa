@@ -51,7 +51,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class MainActivity extends FragmentActivity {
 
-    private View mChat;
+    private ListView mChat;
 	private ListView mFriend;
 	private View mSearch;
 	private View mMore;
@@ -83,6 +83,8 @@ public class MainActivity extends FragmentActivity {
 	 
 	 String regid;
 	 
+	 private RoomAdapter mRoomCursorAdapter;
+	 
 	 public static final String[] students ={
 		 "jongbae", "jineui", "kimun", "hyungchul", "seunghwan", "jaehyung"
 	 };
@@ -93,34 +95,34 @@ public class MainActivity extends FragmentActivity {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        /*
         RoomDbHelper mDbHelper = new RoomDbHelper(this);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(RoomEntry.COLUMN_NAME_PROFILE_ID, R.drawable.park);
         values.put(RoomEntry.COLUMN_NAME_ROOM_NAME, "Test Room");
         values.put(RoomEntry.COLUMN_NAME_ROOM_ID, 1);
-        long newId = db.insert(RoomEntry.TABLE_NAME, null, values);
-        db = mDbHelper.getReadableDatabase();
-        String[] projection = {
-        		RoomEntry._ID, 
-        		RoomEntry.COLUMN_NAME_ROOM_NAME
-        };
-        Cursor c = db.query(RoomEntry.TABLE_NAME, projection, null, null, null, null, null);
+        long newId = db.insert(RoomEntry.TABLE_NAME, null, values);*/
+        RoomDbHelper mDbHelper = new RoomDbHelper(this);
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor c = db.query(RoomEntry.TABLE_NAME, null, null, null, null, null, null);
         System.out.println("query success : " + c.getCount());
         setContentView(R.layout.activity_main);
         mFriend = (ListView) findViewById(R.id.friend);
-        mChat = findViewById(R.id.chat);
+        mChat = (ListView) findViewById(R.id.chat);
+        final String[] ROOM_FORM_COLUMNS ={
+        		RoomEntry.COLUMN_NAME_ROOM_ID,
+        		RoomEntry.COLUMN_NAME_ROOM_NAME,
+        };
+        final int[] ROOM_TO_IDS = {
+        		R.id.text,
+        		R.id.name
+        };
+        mRoomCursorAdapter = new RoomAdapter(this, R.layout.friend_item, c, ROOM_FORM_COLUMNS, ROOM_TO_IDS, 0);
+        mChat.setAdapter(mRoomCursorAdapter);
         mSearch = findViewById(R.id.search);
         mMore = findViewById(R.id.more);
         
-        findViewById(R.id.randombt).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				 int randomIndex = (int) Math.floor(Math.random() * (double) students.length);
-				Toast.makeText(MainActivity.this, "DangChum !" + students[randomIndex], Toast.LENGTH_SHORT).show();
-			}
-		});
         
         findViewById(R.id.friend_bt).setOnClickListener(new OnClickListener() {
 			
@@ -333,6 +335,20 @@ public class MainActivity extends FragmentActivity {
 					super.bindView(view, arg1, cursor);
 					ImageView image = (ImageView) view.findViewById(R.id.pic);
 					image.setImageResource(mProfilePics.get(cursor.getPosition()));
+		}
+	}
+	
+	private class RoomAdapter extends SimpleCursorAdapter{
+		public RoomAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags){
+			super(context, layout, c, from, to, flags);
+		}
+		
+		@Override
+		public void bindView(View view, Context arg1, Cursor cursor){
+			super.bindView(view, arg1, cursor);
+			ImageView image = (ImageView) view.findViewById(R.id.pic);
+			int imageId = cursor.getInt(cursor.getColumnIndex(RoomEntry.COLUMN_NAME_PROFILE_ID));
+			image.setImageResource(imageId);
 		}
 	}
 
