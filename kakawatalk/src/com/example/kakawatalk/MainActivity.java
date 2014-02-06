@@ -85,6 +85,8 @@ public class MainActivity extends FragmentActivity {
 	 
 	 private RoomAdapter mRoomCursorAdapter;
 	 
+	 private RoomDbHelper mDbHelper;
+	 
 	 public static final String[] students ={
 		 "jongbae", "jineui", "kimun", "hyungchul", "seunghwan", "jaehyung"
 	 };
@@ -103,7 +105,7 @@ public class MainActivity extends FragmentActivity {
         values.put(RoomEntry.COLUMN_NAME_ROOM_NAME, "Test Room");
         values.put(RoomEntry.COLUMN_NAME_ROOM_ID, 1);
         long newId = db.insert(RoomEntry.TABLE_NAME, null, values);*/
-        RoomDbHelper mDbHelper = new RoomDbHelper(this);
+        mDbHelper = new RoomDbHelper(this);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         Cursor c = db.query(RoomEntry.TABLE_NAME, null, null, null, null, null, null);
         System.out.println("query success : " + c.getCount());
@@ -292,7 +294,29 @@ public class MainActivity extends FragmentActivity {
 				int count = cursor.getCount();
 				mProfilePics = new ArrayList<Integer>();
 				for(int i = 0; i < count; i++){
-					int resId = Math.random() > 0.5 ? R.drawable.park : R.drawable.park2;
+					int resId = R.drawable.park;
+					double r = Math.random();
+					if(r < 0.1){
+						resId = R.drawable.park;
+					}else if(r < 0.2){
+						resId = R.drawable.park1;
+					}else if(r < 0.3){
+						resId = R.drawable.park2;
+					}else if(r < 0.4){
+						resId = R.drawable.park3;
+					}else if(r < 0.5){
+						resId = R.drawable.park4;
+					}else if(r < 0.6){
+						resId = R.drawable.park5;
+					}else if(r < 0.7){
+						resId = R.drawable.park6;
+					}else if(r < 0.8){
+						resId = R.drawable.park7;
+					}else if(r < 0.9){
+						resId = R.drawable.park8;
+					}else {
+						resId = R.drawable.park9;
+					}
 					mProfilePics.add(resId);
 				}
 				mCursorAdapter.swapCursor(cursor);
@@ -346,17 +370,28 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public void bindView(View view, Context arg1, Cursor cursor){
 			super.bindView(view, arg1, cursor);
-			ImageView image = (ImageView) view.findViewById(R.id.pic);
-			int imageId = cursor.getInt(cursor.getColumnIndex(RoomEntry.COLUMN_NAME_PROFILE_ID));
-			image.setImageResource(imageId);
+			final int id = cursor.getInt(cursor.getColumnIndex(RoomEntry._ID));
 			view.findViewById(R.id.close).setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(MainActivity.this, "close clicked", Toast.LENGTH_SHORT).show();
+					SQLiteDatabase db = mDbHelper.getWritableDatabase();
+					db.delete(RoomEntry.TABLE_NAME, RoomEntry._ID + "= ?", new String[]{
+							String.valueOf(id)
+					});
+					updateRoomCursor();
+					
+					
 				}
 			});
 		}
+	}
+	
+	private void updateRoomCursor(){
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+		
+		Cursor c =db.query(RoomEntry.TABLE_NAME, null, null, null, null, null, null);
+		mRoomCursorAdapter.swapCursor(c);
 	}
 
 

@@ -233,12 +233,18 @@ containing a value of this type.
         public static final int park1=0x7f020028;
         public static final int park2=0x7f020029;
         public static final int park3=0x7f02002a;
-        public static final int profilebackground=0x7f02002b;
-        public static final int search=0x7f02002c;
-        public static final int textbackground=0x7f02002d;
-        public static final int timebackground=0x7f02002e;
-        public static final int x=0x7f02002f;
-        public static final int x1=0x7f020030;
+        public static final int park4=0x7f02002b;
+        public static final int park5=0x7f02002c;
+        public static final int park6=0x7f02002d;
+        public static final int park7=0x7f02002e;
+        public static final int park8=0x7f02002f;
+        public static final int park9=0x7f020030;
+        public static final int profilebackground=0x7f020031;
+        public static final int search=0x7f020032;
+        public static final int textbackground=0x7f020033;
+        public static final int timebackground=0x7f020034;
+        public static final int x=0x7f020035;
+        public static final int x1=0x7f020036;
     }
     public static final class id {
         public static final int action_settings=0x7f050023;
