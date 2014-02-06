@@ -238,6 +238,7 @@ containing a value of this type.
         public static final int textbackground=0x7f02002d;
         public static final int timebackground=0x7f02002e;
         public static final int x=0x7f02002f;
+        public static final int x1=0x7f020030;
     }
     public static final class id {
         public static final int action_settings=0x7f050023;
@@ -291,8 +292,9 @@ containing a value of this type.
         public static final int friend_tap=0x7f030007;
         public static final int message_item=0x7f030008;
         public static final int more_tap=0x7f030009;
-        public static final int search_tap=0x7f03000a;
-        public static final int test=0x7f03000b;
+        public static final int room_item=0x7f03000a;
+        public static final int search_tap=0x7f03000b;
+        public static final int test=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;

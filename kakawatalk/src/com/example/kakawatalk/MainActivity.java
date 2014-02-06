@@ -118,7 +118,7 @@ public class MainActivity extends FragmentActivity {
         		R.id.text,
         		R.id.name
         };
-        mRoomCursorAdapter = new RoomAdapter(this, R.layout.friend_item, c, ROOM_FORM_COLUMNS, ROOM_TO_IDS, 0);
+        mRoomCursorAdapter = new RoomAdapter(this, R.layout.room_item, c, ROOM_FORM_COLUMNS, ROOM_TO_IDS, 0);
         mChat.setAdapter(mRoomCursorAdapter);
         mSearch = findViewById(R.id.search);
         mMore = findViewById(R.id.more);
@@ -349,6 +349,13 @@ public class MainActivity extends FragmentActivity {
 			ImageView image = (ImageView) view.findViewById(R.id.pic);
 			int imageId = cursor.getInt(cursor.getColumnIndex(RoomEntry.COLUMN_NAME_PROFILE_ID));
 			image.setImageResource(imageId);
+			view.findViewById(R.id.close).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(MainActivity.this, "close clicked", Toast.LENGTH_SHORT).show();
+				}
+			});
 		}
 	}
 
