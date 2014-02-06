@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/room"
+    android:background="#ff00bfff"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    >
+  
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll_view"
+        >
+        <LinearLayout 
+            android:id="@+id/messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/emoticons"
+        android:background="#33333333"
+        android:visibility="gone"
+        >
+        <ImageView 
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/emoticon"
+            android:id="@+id/emoticon1"
+            />
+        <ImageView 
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/emoticon1"
+            android:id="@+id/emoticon2"
+            />
+        <ImageView 
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/emoticon3"
+            android:src="@drawable/emoticon2"
+            />
+        
+        
+        
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView 
+            android:id="@+id/camera"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/camera"
+            />
+
+		<EditText 
+		    android:id="@+id/edit"
+		    android:layout_width="wrap_content"
+		    android:layout_height="60dp"
+		    android:layout_weight="1"
+		    android:ems="10">
+		    
+		    <requestFocus />
+		    </EditText>
+		    <Button 
+		        android:id="@+id/emoticon_bt"
+		        android:layout_width="40dp"
+		        android:layout_height="60dp"
+		        android:text="E"
+		        />
+		    <Button 
+		        android:id="@+id/send"
+		        android:layout_width="80dp"
+		        android:layout_height="60dp"
+		        android:text="send"
+		        />
+		    </LinearLayout>
+	</LinearLayout>
+
+
